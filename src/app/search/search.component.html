@@ -1,0 +1,116 @@
+
+      
+    
+<div class="container">
+  <mat-toolbar class="h1" color="primary">Bank Search App</mat-toolbar>
+  <div class="searchbox">
+    <mat-form-field>
+      <mat-label>Select City</mat-label>
+      <mat-select
+        
+        (selectionChange)="onSelectCity($event)"
+        value="MUMBAI"
+        required
+      >
+        <mat-option value="MUMBAI">Mumbai</mat-option>
+        <mat-option value="CHENNAI">Chennai</mat-option>
+        <mat-option value="BANGALORE">Bangalore</mat-option>
+        <mat-option value="HYDERABAD">Hyderabad</mat-option>
+        <mat-option value="PUNE">Pune</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="example-header">
+    <mat-form-field>
+      <input
+        matInput
+        (input)="applyFilter($event.target.value)"
+        ([ngModel])="(filterValue)"
+        placeholder="Search Bank Name"
+      />
+    </mat-form-field>
+  </div>
+
+  <div>
+    <div>
+      <button mat-raised-button type="button" color="primary" (click)="onFavoriteList()">
+        Favorites
+      </button>
+    </div>
+
+    <div class="example-container mat-elevation-z8">
+      <div class="spinner"*ngIf="loader">
+        <mat-spinner ></mat-spinner>
+      </div>
+      <div *ngIf="!loader">
+        <mat-table #table [dataSource]="dataSource" matSort>
+          <!-- Address Column -->
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Address
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.address }} </mat-cell>
+          </ng-container>
+
+          <!-- Bank ID Column -->
+          <ng-container matColumnDef="bank_id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Bank ID
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.bank_id }} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="bank_name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.bank_name }} </mat-cell>
+          </ng-container>
+
+          <!-- City Column -->
+          <ng-container matColumnDef="ifsc">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              IFSC</mat-header-cell
+            >
+            <mat-cell *matCellDef="let row"> {{ row.ifsc }} </mat-cell>
+          </ng-container>
+
+          <!-- District Column -->
+          <ng-container matColumnDef="district">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              District
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.district }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Favorites
+            </mat-header-cell>
+            <mat-cell
+              *matCellDef="let row"
+              (click)="onFavouiteBank(row.ifsc, row)"
+            >
+              <mat-icon *ngIf="!row.favorite">favorite_border</mat-icon>
+              <mat-icon *ngIf="row.favorite">favorite</mat-icon>
+              <!-- [ngClass]="{'favorite':true}" -->
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row
+            *matHeaderRowDef="displayedColumns"
+          ></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+        </mat-table>
+      </div>
+
+      <mat-paginator
+        #paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>
+   
+
