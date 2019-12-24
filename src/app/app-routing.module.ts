@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [
     {
-      path: 'search',
+      path: '',
       component: SearchComponent // Default Route
     }
 
