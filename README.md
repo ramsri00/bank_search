@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+#layman's guide
+##HOW TO RUN=> open the app on heroku 
+ 1.you will get the UI
+ 2.select one city on the dropdown
+ 3.if you want to search a particular bank , search it on the search box
+ 4.select some banks as favourite and reload tthe page 
+ 5.next time if click favourite  button  you will get an list of selected favourite banks
